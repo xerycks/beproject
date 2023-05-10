@@ -1,38 +1,123 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,800;1,900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input,
+button,
+a {
+    outline: none !important;
+    /* border: none !important; */
+    outline-width: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.side-bar-homepage {
+    background-image: url(https://images.unsplash.com/photo-1519074031893-210d39bd3885?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2524&q=80) !important;
+    background-size: cover !important;
+    background-position: center !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.p-info {
+    height: max-content;
+    padding: 10px 10px;
+    background-color: #fff;
+    /* glass effect */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    color: #fff;
+    text-shadow: 0px 0px 10px #00000090;
 }
 
-.App-link {
-  color: #61dafb;
+.p-info .colss {
+
+    padding: 0px 10px;
+    height: max-content;
+
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.small-heading {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.smaller-heading {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.carousel-item img {
+    width: 60%;
+}
+
+.carousel-item h3 {
+    font-size: clamp(20px, 2.5vw, 30px) !important;
+}
+
+input::placeholder {
+    font-size: 12px;
+}
+
+/* for smaller than tablet sizes */
+@media only screen and (max-width: 786px) {}
+
+
+/* for mobile sizes */
+@media only screen and (max-width: 500px) {}
+
+
+/* for larger than tablet sizes */
+@media only screen and (min-width: 990px) {
+
+    .row {
+        height: 100vh;
+    }
+
+}
+
+/* images */
+
+.scanned-img {
+    height: 250px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.scanned-img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.scanned-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.scanned-img .img-info {
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    width: fit-content;
+    padding: 10px 10px;
+    background-color: #fff;
+    /* glass effect */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    color: #fff;
+    text-shadow: 0px 0px 10px #00000090;
+    z-index: 1;
 }
