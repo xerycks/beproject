@@ -93,6 +93,7 @@ function Dashboard() {
             .catch(error => {
                 console.log('error', error)
                 setLoading(false)
+                setPredictions("No Military Objects Detected" )
             });
 
     }
@@ -141,6 +142,7 @@ function Dashboard() {
                 <>
                     <img src={URL.createObjectURL(imageData[0][0])} className="selectedImage" alt="wow"/> 
                     {predictions ? <p>{predictions}</p> : <></>}
+                    {}
                 </>
                     
                     :
