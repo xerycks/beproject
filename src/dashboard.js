@@ -135,7 +135,7 @@ function Dashboard() {
                 </div>
             </div> */}
 
-            <div className="container-fluid mt-8 px-md-5 px-2 scanContainer">
+            <div className={imageData.length > 0 ? "container-fluid mt-8 px-md-5 px-2 scanContainer" : "container-fluid mt-8 px-md-5 px-2 scanContainer noImage" }>
                 <p className="small-heading px-5">Scan New Image</p>
                 {/* select image */}
                 {imageData.length > 0 ?
@@ -163,7 +163,11 @@ function Dashboard() {
                 onClick={SendImage}
                 >Scan</button>
                 <button className="btn btn-sm btn-outline-primary me-2"
-                onClick={() => setImageData([])}
+                onClick={() => {
+                    setImageData([])
+                    setPredictions()
+
+                }}
                 >Change Image</button>
                 </>
                 )

@@ -141,9 +141,16 @@ input::placeholder {
     align-items: center;
     gap: 20px;
     border-radius: 20px;
-    box-shadow: 0 0 30px -10px #00000050;
     background-color: #bd8d8d10;
     padding: 30px 10px !important;
+}
+
+.noImage {
+    /* incrase border dash space */
+    border:1px dashed #0b2ecaac;
+    background-color: #0b2eca10;
+    border-radius: 20px;
+    padding: 20px 10px;
 }
 
 .inputfile {
