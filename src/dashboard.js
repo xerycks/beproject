@@ -71,9 +71,8 @@ function Dashboard() {
             </div>
 
             {/* Already Scaned Images */}
-            <div className="container-fluid mt-5 px-md-5 px-2">
+            {/* <div className="container-fluid mt-5 px-md-5 px-2">
                 <p className="small-heading px-5">Scanned History</p>
-                {/* place image in grid to fit all type of sizes */}
                 <div className="row m-0 mt-4 justify-content-start align-content-start align-itmes-start">
                     { // map through all the images
                         data.map((item) => {
@@ -93,7 +92,17 @@ function Dashboard() {
                         )
                     }
                 </div>
+            </div> */}
+
+            <div className="container-fluid mt-5 px-md-5 px-2 scanContainer">
+                <p className="small-heading px-5">Scan New Image</p>
+                {/* select image */}
+                <input type="file" id="file" className="inputfile" />
+                <label htmlFor="file" className="btn btn-sm btn-outline-primary me-2">Select Image</label>
+                        
+                <button className="btn btn-sm btn-outline-primary me-2">Scan</button>
             </div>
+
 
         </>
     );

@@ -121,3 +121,39 @@ input::placeholder {
     text-shadow: 0px 0px 10px #00000090;
     z-index: 1;
 }
+
+
+/* Newww */
+
+.scanContainer {
+    height: 50vh;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px -10px #00000050;
+    background-color: #bd8d8d10;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile+label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
