@@ -1,60 +1,66 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+
+const data = [
+    {
+        id: 1,
+        imageAddress: "https://images.unsplash.com/photo-1519074031893-210d39bd3885?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2524&q=80",
+        timestamp: "2021-06-01 12:00:00",
+        location: "28.7041° N, 77.1025° E",
+        result: "No Threats Detected"
+    },
+    {
+        id: 2,
+        imageAddress: "https://images.unsplash.com/photo-1629032563246-19ee3aeb7dc4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80",
+        timestamp: "2021-06-01 12:00:00",
+        location: "28.7041° N, 77.1025° E",
+        result: "Planes & Helicopters Detected"
+    },
+    {
+        id: 3,
+        imageAddress: "https://images.unsplash.com/photo-1620059116993-398c21ce8406?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
+        timestamp: "2021-06-01 12:00:00",
+        location: "28.7041° N, 77.1025° E",
+        result: "Bunkers Detected"
+    },
+    // generate 10 more with random result
+    {
+        id: 4,
+        imageAddress: "https://plus.unsplash.com/premium_photo-1661875250660-5cb2e21e5a56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
+        timestamp: "2021-06-01 12:00:00",
+        location: "28.7041° N, 77.1025° E",
+        result: "No Threats Detected"
+    },
+    {
+        id: 5,
+        imageAddress: "https://images.unsplash.com/photo-1535332489047-1170f3fff966?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2369&q=80",
+        timestamp: "2021-06-01 12:00:00",
+        location: "28.7041° N, 77.1025° E",
+        result: "Planes & Helicopters Detected"
+    },
+    {
+        id: 6,
+        imageAddress: "https://images.unsplash.com/photo-1635794675394-8246d343234b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG1pbGl0YXJ5JTIwYnVua2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+        timestamp: "2021-06-01 12:00:00",
+        location: "28.7041° N, 77.1025° E",
+        result: "Bunkers Detected"
+    },
+    {
+        id: 7,
+        imageAddress: "https://images.unsplash.com/photo-1629032642277-a112ec9fe93b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+        timestamp: "2021-06-01 12:00:00",
+        location: "28.7041° N, 77.1025° E",
+        result: "No Threats Detected"
+    }
+]
 
 function Dashboard() {
+    const [imageData, setImageData] = useState([]);
 
-    const data = [
-        {
-            id: 1,
-            imageAddress: "https://images.unsplash.com/photo-1519074031893-210d39bd3885?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2524&q=80",
-            timestamp: "2021-06-01 12:00:00",
-            location: "28.7041° N, 77.1025° E",
-            result: "No Threats Detected"
-        },
-        {
-            id: 2,
-            imageAddress: "https://images.unsplash.com/photo-1629032563246-19ee3aeb7dc4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80",
-            timestamp: "2021-06-01 12:00:00",
-            location: "28.7041° N, 77.1025° E",
-            result: "Planes & Helicopters Detected"
-        },
-        {
-            id: 3,
-            imageAddress: "https://images.unsplash.com/photo-1620059116993-398c21ce8406?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
-            timestamp: "2021-06-01 12:00:00",
-            location: "28.7041° N, 77.1025° E",
-            result: "Bunkers Detected"
-        },
-        // generate 10 more with random result
-        {
-            id: 4,
-            imageAddress: "https://plus.unsplash.com/premium_photo-1661875250660-5cb2e21e5a56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
-            timestamp: "2021-06-01 12:00:00",
-            location: "28.7041° N, 77.1025° E",
-            result: "No Threats Detected"
-        },
-        {
-            id: 5,
-            imageAddress: "https://images.unsplash.com/photo-1535332489047-1170f3fff966?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2369&q=80",
-            timestamp: "2021-06-01 12:00:00",
-            location: "28.7041° N, 77.1025° E",
-            result: "Planes & Helicopters Detected"
-        },
-        {
-            id: 6,
-            imageAddress: "https://images.unsplash.com/photo-1635794675394-8246d343234b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG1pbGl0YXJ5JTIwYnVua2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            timestamp: "2021-06-01 12:00:00",
-            location: "28.7041° N, 77.1025° E",
-            result: "Bunkers Detected"
-        },
-        {
-            id: 7,
-            imageAddress: "https://images.unsplash.com/photo-1629032642277-a112ec9fe93b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-            timestamp: "2021-06-01 12:00:00",
-            location: "28.7041° N, 77.1025° E",
-            result: "No Threats Detected"
-        }
-    ]
-
+    const onImageChange = (e) => {
+        setImageData([e.target.files]);
+    }
     return (
         <>
             <div>
@@ -84,7 +90,7 @@ function Dashboard() {
                                             {item.result}
                                         </p>
                                         <p className="smaller-heading">{item.location}, {item.timestamp}</p>
-
+ 
                                     </div>
                                 </div>
                             )
@@ -97,9 +103,14 @@ function Dashboard() {
             <div className="container-fluid mt-5 px-md-5 px-2 scanContainer">
                 <p className="small-heading px-5">Scan New Image</p>
                 {/* select image */}
-                <input type="file" id="file" className="inputfile" />
-                <label htmlFor="file" className="btn btn-sm btn-outline-primary me-2">Select Image</label>
-                        
+                {imageData.length > 0 ?
+                    <img src={URL.createObjectURL(imageData[0][0])} /> 
+                    :
+                    <div>
+                        <input type="file" id="file" accept="image/*" onChange={onImageChange} />
+                        <label htmlFor="file" className="btn btn-sm btn-outline-primary me-2">Select Image</label>
+                    </div>
+                }
                 <button className="btn btn-sm btn-outline-primary me-2">Scan</button>
             </div>
 
