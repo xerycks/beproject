@@ -63,6 +63,7 @@ const data = [
 function Dashboard() {
     const [imageData, setImageData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [predictions, setPredictions] = useState();
 
     const onImageChange = (e) => {
         setImageData([e.target.files]);
@@ -70,28 +71,29 @@ function Dashboard() {
     }
 
     function SendImage(){
-        console.log(imageData);
+        console.log(imageData[0][0]);
         setLoading(true);
         // send image to backend
-        fetch("http://beproj.aitoss.club/predict", {
-            method: "POST",
-            body: JSON.stringify({
-                image: imageData[0][0]
-            }),
-            contentType: "multipart/form-data",
-            processData: false,
-            mimeType: "multipart/form-data",
+        var formdata = new FormData();
+        formdata.append("image", imageData[0][0], "i1.jpeg");
 
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            setLoading(false);
-        })
-        .catch(err => {
-            console.log(err);
-            setLoading(false);
-        })
+        var requestOptions = {
+            method: 'POST',
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch("http://beproj.aitoss.club/predict", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result.prediction)
+                setLoading(false)
+                setPredictions(result.prediction)
+                })
+            .catch(error => {
+                console.log('error', error)
+                setLoading(false)
+            });
 
     }
     
@@ -136,7 +138,11 @@ function Dashboard() {
                 <p className="small-heading px-5">Scan New Image</p>
                 {/* select image */}
                 {imageData.length > 0 ?
+                <>
                     <img src={URL.createObjectURL(imageData[0][0])} className="selectedImage" alt="wow"/> 
+                    {predictions ? <p>{predictions}</p> : <></>}
+                </>
+                    
                     :
                     <div>
                         <input type="file" id="file" accept="image/*" onChange={onImageChange} className="inputfile"/>
@@ -144,7 +150,7 @@ function Dashboard() {
                     </div>
                 }
                 {imageData.length > 0 &&
-                (loading ? 
+                ( loading ? 
                 <button className="btn btn-sm btn-outline-primary me-2"
                 onClick={SendImage}
                 >Scanning...</button>
