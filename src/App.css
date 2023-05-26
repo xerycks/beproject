@@ -15,6 +15,12 @@ a {
     outline-width: 0px;
 }
 
+.navbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000;
+}
+
 .side-bar-homepage {
     background-image: url(https://images.unsplash.com/photo-1519074031893-210d39bd3885?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2524&q=80) !important;
     background-size: cover !important;
@@ -126,7 +132,8 @@ input::placeholder {
 /* Newww */
 
 .scanContainer {
-    height: 50vh;
+    min-height: 50vh;
+    height: fit-content;
     width: 95%;
     display: flex;
     flex-direction: column;
@@ -136,6 +143,7 @@ input::placeholder {
     border-radius: 20px;
     box-shadow: 0 0 30px -10px #00000050;
     background-color: #bd8d8d10;
+    padding: 30px 10px !important;
 }
 
 .inputfile {
@@ -156,4 +164,40 @@ input::placeholder {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.selectedImage {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.scanContainer2{
+    min-height: 50vh;
+    height: fit-content;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px -10px #00000050;
+    background-color: #bd8d8d10;
+    padding: 30px 10px !important;
+}
+
+.scanContainer3 {
+    height: fit-content;
+    width: 95%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px -10px #00000050;
+    background-color: #bd8d8d10;
+    padding: 30px 10px !important;
 }

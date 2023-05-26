@@ -1,6 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import arch1 from "./assets/arch1.jpeg";
+import arch2 from "./assets/12.png";
+import arch3 from "./assets/modulesAndStem.png";
+import scaling from "./assets/scaling.png";
+
 
 const data = [
     {
@@ -57,13 +62,41 @@ const data = [
 
 function Dashboard() {
     const [imageData, setImageData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const onImageChange = (e) => {
         setImageData([e.target.files]);
+        console.log(imageData);
     }
+
+    function SendImage(){
+        console.log(imageData);
+        setLoading(true);
+        // send image to backend
+        fetch("http://beproj.aitoss.club/predict", {
+            method: "POST",
+            body: JSON.stringify({
+                image: imageData[0][0]
+            }),
+            contentType: "multipart/form-data",
+            processData: false,
+            mimeType: "multipart/form-data",
+
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setLoading(false);
+        })
+        .catch(err => {
+            console.log(err);
+            setLoading(false);
+        })
+
+    }
+    
     return (
         <>
-            <div>
                 {/* Navbar */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light px-md-2 px-0">
                     <div className="container-fluid m-0 px-3">
@@ -74,8 +107,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </nav>
-            </div>
-
+          
             {/* Already Scaned Images */}
             {/* <div className="container-fluid mt-5 px-md-5 px-2">
                 <p className="small-heading px-5">Scanned History</p>
@@ -100,18 +132,74 @@ function Dashboard() {
                 </div>
             </div> */}
 
-            <div className="container-fluid mt-5 px-md-5 px-2 scanContainer">
+            <div className="container-fluid mt-8 px-md-5 px-2 scanContainer">
                 <p className="small-heading px-5">Scan New Image</p>
                 {/* select image */}
                 {imageData.length > 0 ?
-                    <img src={URL.createObjectURL(imageData[0][0])} /> 
+                    <img src={URL.createObjectURL(imageData[0][0])} className="selectedImage" alt="wow"/> 
                     :
                     <div>
-                        <input type="file" id="file" accept="image/*" onChange={onImageChange} />
+                        <input type="file" id="file" accept="image/*" onChange={onImageChange} className="inputfile"/>
                         <label htmlFor="file" className="btn btn-sm btn-outline-primary me-2">Select Image</label>
                     </div>
                 }
-                <button className="btn btn-sm btn-outline-primary me-2">Scan</button>
+                {imageData.length > 0 &&
+                (loading ? 
+                <button className="btn btn-sm btn-outline-primary me-2"
+                onClick={SendImage}
+                >Scanning...</button>
+
+                :
+                <>
+                <button className="btn btn-sm btn-outline-primary me-2"
+                onClick={SendImage}
+                >Scan</button>
+                <button className="btn btn-sm btn-outline-primary me-2"
+                onClick={() => setImageData([])}
+                >Change Image</button>
+                </>
+                )
+            }
+            </div>
+
+            <div className="container-fluid mt-10 px-md-5 px-2 scanContainer2">
+                <h4 className="mb-6">
+                    How DefenseVision Works?
+                </h4>
+                <img src={arch1} alt="arch1" className="img-fluid" />
+                <hr />
+                <h4 className="mb-6">
+                    Scaling in EffcientNet
+                </h4>
+                <img src={scaling} alt="arch4" className="img-fluid" />
+                <hr />
+                <h4 className="mb-6">
+                    EffcientNet Architecture
+                </h4>
+                <img src={arch2} alt="arch2" className="img-fluid" />
+                <hr />
+                <img src={arch3} alt="arch3" className="img-fluid" />
+            </div>
+
+            <div className="container-fluid mt-10 px-md-5 px-2 scanContainer3">
+                <h4 className="mb-6">
+                    Project Team
+                </h4>
+                <ul>
+                    <li>Rishabh Rathore</li>
+                    <li>Ankit Gadhwal</li>
+                    <li>Neerak Singh</li>
+                    <li>Arvind Kumar</li>
+                </ul>
+                <h4 className="mb-6">
+                    Project Mentors : 
+                </h4>
+                <ul>
+                    <li>Prof. Seeta Yadav</li>
+                    <li>Prof. Anup Kadam</li>
+                    <li>Dr. Sunil Dhore</li>
+                </ul>
+
             </div>
 
 
